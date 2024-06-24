@@ -4,59 +4,22 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
+import com.a1ishka.calculator.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var expression: TextView
     private lateinit var result: TextView
 
-    private lateinit var one: MaterialButton
-    private lateinit var two: MaterialButton
-    private lateinit var three: MaterialButton
-    private lateinit var four: MaterialButton
-    private lateinit var five: MaterialButton
-    private lateinit var six: MaterialButton
-    private lateinit var seven: MaterialButton
-    private lateinit var eight: MaterialButton
-    private lateinit var nine: MaterialButton
-    private lateinit var zero: MaterialButton
-
-    private lateinit var clear: MaterialButton
-    private lateinit var add: MaterialButton
-    private lateinit var opposite: MaterialButton
-    private lateinit var divine: MaterialButton
-    private lateinit var module: MaterialButton
-    private lateinit var multiply: MaterialButton
-    private lateinit var subtract: MaterialButton
-    private lateinit var dot: MaterialButton
-    private lateinit var equal: MaterialButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         expression = findViewById(R.id.expression_picker_tv)
         result = findViewById(R.id.result_tv)
-        one = findViewById(R.id.btn_1)
-        two = findViewById(R.id.btn_2)
-        three = findViewById(R.id.btn_3)
-        four = findViewById(R.id.btn_4)
-        five = findViewById(R.id.btn_5)
-        six = findViewById(R.id.btn_6)
-        seven = findViewById(R.id.btn_7)
-        eight = findViewById(R.id.btn_8)
-        nine = findViewById(R.id.btn_9)
-        zero = findViewById(R.id.btn_0)
-        dot = findViewById(R.id.btn_dot)
-        multiply = findViewById(R.id.btn_multiply)
-        subtract = findViewById(R.id.btn_subtract)
-        module = findViewById(R.id.btn_module)
-        add = findViewById(R.id.btn_add)
-        opposite = findViewById(R.id.btn_opposite)
-        equal = findViewById(R.id.btn_result)
-        divine = findViewById(R.id.btn_divine)
-        clear = findViewById(R.id.btn_clear)
 
         var str: String
         val operators = listOf("+", "-", "*", "/", ".", "%")
@@ -65,7 +28,7 @@ class MainActivity : AppCompatActivity(){
         expression.isActivated = true
         expression.isPressed = true
 
-        one.setOnClickListener {
+        binding.btn1.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "1"
                 expressionText(str)
@@ -76,7 +39,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        two.setOnClickListener {
+        binding.btn2.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "2"
                 expressionText(str)
@@ -87,7 +50,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        three.setOnClickListener {
+        binding.btn3.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "3"
                 expressionText(str)
@@ -98,7 +61,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        four.setOnClickListener {
+        binding.btn4.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "4"
                 expressionText(str)
@@ -109,7 +72,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        five.setOnClickListener {
+        binding.btn5.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "5"
                 expressionText(str)
@@ -120,7 +83,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        six.setOnClickListener {
+        binding.btn6.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "6"
                 expressionText(str)
@@ -131,7 +94,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        seven.setOnClickListener {
+        binding.btn7.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "7"
                 expressionText(str)
@@ -142,7 +105,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        eight.setOnClickListener {
+        binding.btn8.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "8"
                 expressionText(str)
@@ -153,7 +116,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        nine.setOnClickListener {
+        binding.btn9.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "9"
                 expressionText(str)
@@ -164,7 +127,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        zero.setOnClickListener {
+        binding.btn0.setOnClickListener {
             if (expression.text.toString().startsWith("0")) {
                 str = expression.text.toString().replace("0", "") + "0"
                 expressionText(str)
@@ -175,7 +138,7 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        add.setOnClickListener {
+        binding.btnAdd.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -185,7 +148,7 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        subtract.setOnClickListener {
+        binding.btnSubtract.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -195,7 +158,7 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        multiply.setOnClickListener {
+        binding.btnMultiply.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -205,7 +168,7 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        module.setOnClickListener {
+        binding.btnModule.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -215,7 +178,7 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        dot.setOnClickListener {
+        binding.btnDot.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -225,7 +188,7 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        clear.setOnClickListener {
+        binding.btnClear.setOnClickListener {
             if (expression.text.toString().isNotEmpty()) {
                 val lastIndex = expression.text.toString().lastIndex
                 str = expression.text.toString().substring(0, lastIndex)
@@ -233,15 +196,15 @@ class MainActivity : AppCompatActivity(){
                 resultText()
             }
         }
-        clear.setOnLongClickListener {
+        binding.btnClear.setOnLongClickListener {
             expressionText("0")
             expression.textSize = 60F
             result.textSize = 30F
-            result.setTextColor( resources.getColor(R.color.light_gray,  null))
+            result.setTextColor(resources.getColor(R.color.light_gray, null))
             resultText()
             true
         }
-        divine.setOnClickListener {
+        binding.btnDivine.setOnClickListener {
             val expressionToString = expression.text.toString()
             if (operators.any { expressionToString.endsWith(it) }) {
                 str = expression.text.toString()
@@ -251,12 +214,12 @@ class MainActivity : AppCompatActivity(){
                 expressionText(str)
             }
         }
-        equal.setOnClickListener {
+        binding.btnResult.setOnClickListener {
             expression.textSize = 30F
             result.textSize = 60F
-            result.setTextColor( resources.getColor(R.color.white,  null))
+            result.setTextColor(resources.getColor(R.color.white, null))
         }
-        opposite.setOnClickListener {
+        binding.btnOpposite.setOnClickListener {
             val exp = expression.text.toString()
             val regex = "[-+]?\\d+(\\.\\d+)?"
             val numberRegex = Regex(regex)
