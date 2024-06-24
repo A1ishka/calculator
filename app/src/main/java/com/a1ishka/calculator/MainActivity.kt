@@ -11,6 +11,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var expression: TextView
     private lateinit var result: TextView
+    private var expressionContent: String? = ""
+    private var resultContent: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         expression = findViewById(R.id.expression_picker_tv)
         result = findViewById(R.id.result_tv)
+
+        if (savedInstanceState != null) {
+            expressionContent = savedInstanceState.getString("expressionContent")
+            resultContent = savedInstanceState.getString("resultContent")
+            expression.text = expressionContent
+            result.text = resultContent
+        }
 
         var str: String
         val operators = listOf("+", "-", "*", "/", ".", "%")
@@ -237,6 +246,22 @@ class MainActivity : AppCompatActivity() {
                 resultText()
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        expressionContent = expression.text.toString()
+        resultContent = result.text.toString()
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+
+        expressionContent = savedInstanceState.getString("expressionContent")
+        resultContent = savedInstanceState.getString("resultContent")
     }
 
     private fun String.replaceLast(oldValue: String, newValue: String): String {
